@@ -7,7 +7,6 @@ const fedition = document.getElementsByClassName('.f-edition');
 const fsubmit = document.getElementsByClassName('.f-submit');
 
 function Book(title,author,pages,edition){
-  let id;
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -20,26 +19,26 @@ function showForm(){
 
 function showBooks(){
   const bookCard = document.querySelector('.book-card');
-
+  
   bookCard.innerHTML = '';
-
-  for (let i = 0; i < this.myLibrary.length; i++) {
+  
+  for (let i = 0; i < myLibrary.length; i++) {
     // this.myLibrary[i];
-    const cardTitle = document.createElement('div');
+    const cardTitle = document.createElement('h2');
     cardTitle.setAttribute('class', 'card-title');
     cardTitle.innerText = myLibrary[i].title;
-
-    const cardAuthor = document.createElement('div');
+    
+    const cardAuthor = document.createElement('h3');
     cardAuthor.setAttribute('class', 'card-author');
-    cardAuthor.innerText = myLibrary[i].author;
+    cardAuthor.innerText = `Author: ${myLibrary[i].author}`;
 
-    const cardPage = document.createElement('div');
+    const cardPage = document.createElement('p');
     cardPage.setAttribute('class', 'card-page');
-    cardPage.innerText = myLibrary[i].pages;
+    cardPage.innerText = `Number of pages: ${myLibrary[i].pages}`;
 
-    const cardEdition = document.createElement('div');
+    const cardEdition = document.createElement('p');
     cardEdition.setAttribute('class', 'card-edition');
-    cardEdition.innerText = myLibrary[i].edition;
+    cardEdition.innerText = `Edition: ${myLibrary[i].edition}`;
 
     bookCard.appendChild(cardTitle);
     bookCard.appendChild(cardAuthor);
@@ -59,3 +58,11 @@ function addNewBooks(){
     showBooks();
   }
 }
+
+const book1 = new Book('Harry Potter','JK. Rowling','500','First Edition');
+const book2 = new Book('Apocalips','Giordano','800','Third Edition');
+
+myLibrary.push(book1);
+myLibrary.push(book2);
+
+showBooks();
