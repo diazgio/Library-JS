@@ -19,7 +19,13 @@ function showForm(){
 }
 
 function showBooks(){
-  
+  const bookCard = document.querySelector('.book-card');
+
+  bookCard.innerHTML = '';
+
+  for (let i = 0; i < this.myLibrary.length; i++) {
+    this.myLibrary[i];
+  }
 }
 
 function addNewBooks(){
