@@ -24,7 +24,29 @@ function showBooks(){
   bookCard.innerHTML = '';
 
   for (let i = 0; i < this.myLibrary.length; i++) {
-    this.myLibrary[i];
+    // this.myLibrary[i];
+    const cardTitle = document.createElement('div');
+    cardTitle.setAttribute('class', 'card-title');
+    cardTitle.innerText = myLibrary[i].title;
+
+    const cardAuthor = document.createElement('div');
+    cardAuthor.setAttribute('class', 'card-author');
+    cardAuthor.innerText = myLibrary[i].author;
+
+    const cardPage = document.createElement('div');
+    cardPage.setAttribute('class', 'card-page');
+    cardPage.innerText = myLibrary[i].pages;
+
+    const cardEdition = document.createElement('div');
+    cardEdition.setAttribute('class', 'card-edition');
+    cardEdition.innerText = myLibrary[i].edition;
+
+    bookCard.appendChild(cardTitle);
+    bookCard.appendChild(cardAuthor);
+    bookCard.appendChild(cardPage);
+    bookCard.appendChild(cardEdition);
+
+
   }
 }
 
