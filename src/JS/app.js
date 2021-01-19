@@ -65,4 +65,16 @@ const book2 = new Book('Apocalips','Giordano','800','Third Edition');
 myLibrary.push(book1);
 myLibrary.push(book2);
 
+function updateLocalStorage() {
+  localStorage.setItem('myLibrary', JSON.stringify(this.myLibrary));
+}
+
+function getLocalStorage() {
+  if (localStorage.getItem('myLibrary')) {
+    this.myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  } else {
+    this.myLibrary = [];
+  }
+}
+
 showBooks();
