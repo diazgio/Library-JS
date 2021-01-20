@@ -30,22 +30,16 @@ function addNewBooks(){
     const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value);
     myLibrary.push(book);
     updateLocalStorage();
-    // showBooks();
   }
 }
 
 function updateLocalStorage() {
-  // if (book){
-  //   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  //   myLibrary.push(book);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  // }
 }
 
 function getLocalStorage() {
-  // if (localStorage.getItem('myLibrary')) {
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-   // else {
+
     if (myLibrary === null) {
       myLibrary = [];
     }
@@ -55,9 +49,6 @@ function getLocalStorage() {
 
 
 function showBooks(){
-  //getLocalStorage();
-  
-  // bookCard.innerHTML = '';
   
   for (let i = 0; i < myLibrary.length; i++) {
     
@@ -84,8 +75,5 @@ function showBooks(){
   }
   
 }
-
-// showBooks();
-// console.log(myLibrary);
 
 getLocalStorage();
