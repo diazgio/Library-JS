@@ -28,25 +28,28 @@ function addNewBooks(){
     alert('There are data missing, please check it.')
   } else {
     const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value);
-    updateLocalStorage(book);
-    showBooks();
+    myLibrary.push(book);
+    updateLocalStorage();
+    // showBooks();
   }
 }
 
-function updateLocalStorage(book) {
-  if (book){
-    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-    myLibrary.push(book);
+function updateLocalStorage() {
+  // if (book){
+  //   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  //   myLibrary.push(book);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  }
+  // }
 }
 
 function getLocalStorage() {
-  if (localStorage.getItem('myLibrary')) {
+  // if (localStorage.getItem('myLibrary')) {
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  } else {
-    myLibrary = [];
-  }
+   // else {
+    if (myLibrary === null) {
+      myLibrary = [];
+    }
+    showBooks();
 }
 
 
@@ -54,7 +57,7 @@ function getLocalStorage() {
 function showBooks(){
   //getLocalStorage();
   
-  bookCard.innerHTML = '';
+  // bookCard.innerHTML = '';
   
   for (let i = 0; i < myLibrary.length; i++) {
     
@@ -82,5 +85,7 @@ function showBooks(){
   
 }
 
-showBooks();
-console.log(myLibrary);
+// showBooks();
+// console.log(myLibrary);
+
+getLocalStorage();
