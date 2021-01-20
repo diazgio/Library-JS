@@ -100,6 +100,7 @@ function readStatus(s) {
   } else {
     s = 'Read';
   }
+  getLocalStorage();
 }
 
 function readContent(s) {
