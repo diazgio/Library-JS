@@ -28,31 +28,31 @@ function addNewBooks(){
     alert('There are data missing, please check it.')
   } else {
     const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value);
-    updateLocalStorage(book);
+    //updateLocalStorage(book);
     showBooks();
   }
 }
 
-function updateLocalStorage(book) {
-  if (book){
-    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-    myLibrary.push(book);
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  }
-}
+// function updateLocalStorage(book) {
+//   if (book){
+//     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+//     myLibrary.push(book);
+//     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+//   }
+// }
 
-function getLocalStorage() {
-  if (localStorage.getItem('myLibrary')) {
-    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  } else {
-    myLibrary = [];
-  }
-}
+// function getLocalStorage() {
+//   if (localStorage.getItem('myLibrary')) {
+//     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+//   } else {
+//     myLibrary = [];
+//   }
+// }
 
 
 
 function showBooks(){
-  getLocalStorage();
+  //getLocalStorage();
   
   bookCard.innerHTML = '';
   
@@ -83,4 +83,3 @@ function showBooks(){
 }
 
 showBooks();
-console.log(myLibrary);
