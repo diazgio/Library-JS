@@ -43,7 +43,17 @@ function getLocalStorage() {
     showBooks();
 }
 
+function deleteBook(book) {
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  myLibrary.splice(book, 1);
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  getLocalStorage();
+
+}
+
 function showBooks(){
+
+  bookCard.innerHTML = '';
   for (let i = 0; i < myLibrary.length; i++) {
 
     let m = readContent(i);
@@ -72,12 +82,19 @@ function showBooks(){
     readButton.innerHTML = 'Change Status';
     readButton.setAttribute('onclick', `readStatus(${i})`);
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('type', 'button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.setAttribute('onclick', `deleteBook(${i})`);
+
     bookCard.appendChild(cardTitle);
     bookCard.appendChild(cardAuthor);
     bookCard.appendChild(cardPage);
     bookCard.appendChild(cardEdition);
     bookCard.appendChild(cardRead);
     bookCard.appendChild(readButton);
+    bookCard.appendChild(deleteBtn);
   }
 }
 
@@ -85,6 +102,7 @@ function readStatus(s) {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   myLibrary[s].read = !myLibrary[s].read;
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  getLocalStorage();
 }
 
 function readContent(s) {
