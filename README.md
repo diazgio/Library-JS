@@ -30,14 +30,20 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
+**STEP 1**
 In the terminal, Run the following commands.
 
-`git clone https://github.com/diazgio/Library-JS.git`
-`cd Library-JS`
+- `git clone https://github.com/diazgio/Library-JS.git`
+- `cd Library-JS`
 
 OR
 
-Download the zip file form `https://github.com/diazgio/Library-JS/tree/development`
+- Download the zip file form `https://github.com/diazgio/Library-JS/tree/development`
+
+**STEP 2**
+
+- Then open the `index.html` file using a browser.
+- Enjoy the simple library.
 
 ## Authors
 
