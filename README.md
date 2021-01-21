@@ -5,7 +5,7 @@
 
 > All books are stored in the browser's local storage.
 
-![screenshot](./screenshot.png)
+![screenshot](./Screenshot.png)
 
 
 ## Built
