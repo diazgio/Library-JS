@@ -1,3 +1,5 @@
+import index.js
+
 let myLibrary = [];
 const form = document.querySelector('form');
 const ftitle = document.querySelector('.f-title');
@@ -16,15 +18,15 @@ function Book(title, author, pages, edition, read) {
   this.read = !read;
 }
 
-function showForm() {
+const showForm = () => {
   form.className = 'show';
 }
 
-function updateLocalStorage() {
+const updateLocalStorage = () => {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-function addNewBooks() {
+const addNewBooks = () => {
   if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
     alert('There are data missing, please check it.');
   } else {
@@ -34,7 +36,7 @@ function addNewBooks() {
   }
 }
 
-function readContent(s) {
+const readContent = (s) => {
   let status;
   if (myLibrary[s].read === true) {
     status = 'Read';
@@ -44,7 +46,7 @@ function readContent(s) {
   return status;
 }
 
-function showBooks() {
+const showBooks = () => {
   bookCard.innerHTML = '';
   for (let i = 0; i < myLibrary.length; i += 1) {
     const m = readContent(i);
@@ -92,7 +94,7 @@ function showBooks() {
   }
 }
 
-function getLocalStorage() {
+const getLocalStorage = () => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
 
   if (myLibrary === null) {
@@ -101,14 +103,14 @@ function getLocalStorage() {
   showBooks();
 }
 
-function deleteBook(book) {
+const deleteBook = (book) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   myLibrary.splice(book, 1);
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   getLocalStorage();
 }
 
-function readStatus(s) {
+const readStatus = (s) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   myLibrary[s].read = !myLibrary[s].read;
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
