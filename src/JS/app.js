@@ -55,9 +55,9 @@ function showBooks(){
 
   bookCard.innerHTML = '';
   for (let i = 0; i < myLibrary.length; i++) {
-
     let m = readContent(i);
-    
+    const bookDiv = document.createElement('div');
+    bookDiv.className = 'book-item';
     const cardTitle = document.createElement('h2');
     cardTitle.setAttribute('class', 'card-title');
     cardTitle.innerText = myLibrary[i].title;
@@ -79,6 +79,7 @@ function showBooks(){
     cardRead.innerHTML = `${m}`;
 
     const readButton = document.createElement('button');
+    readButton.className = 'read-btn'
     readButton.innerHTML = 'Change Status';
     readButton.setAttribute('onclick', `readStatus(${i})`);
 
@@ -88,13 +89,14 @@ function showBooks(){
     deleteBtn.textContent = 'Delete';
     deleteBtn.setAttribute('onclick', `deleteBook(${i})`);
 
-    bookCard.appendChild(cardTitle);
-    bookCard.appendChild(cardAuthor);
-    bookCard.appendChild(cardPage);
-    bookCard.appendChild(cardEdition);
-    bookCard.appendChild(cardRead);
-    bookCard.appendChild(readButton);
-    bookCard.appendChild(deleteBtn);
+    bookDiv.appendChild(cardTitle);
+    bookDiv.appendChild(cardAuthor);
+    bookDiv.appendChild(cardPage);
+    bookDiv.appendChild(cardEdition);
+    bookDiv.appendChild(cardRead);
+    bookDiv.appendChild(readButton);
+    bookDiv.appendChild(deleteBtn);
+    bookCard.appendChild(bookDiv);
   }
 }
 

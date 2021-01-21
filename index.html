@@ -11,10 +11,11 @@
       <h1>Welcome to Big Library</h1>
     </header>
     <main>
-      <div>
+      <div class='form-container'>
         <button class='Add-button' onclick='showForm()' >Add a New book</button>
         <form class='init' action="">
-          title: <input class='f-title' type="text">
+          <label for="">Title</label>
+          <input class='f-title' type="text">
           author: <input class='f-author' type="text">
           pages: <input class='f-pages' type="text">
           edition: <input class='f-edition' type="text">
@@ -22,10 +23,8 @@
           <button class='f-submit' type="submit" onclick='addNewBooks()'>Submit</button>
         </form>
       </div>
-      <div class='book-container'>
-        <div class='book-card'>
-          
-        </div>
+      <div class='book-card'>
+        
       </div>
     </main>
     <script src="./src/JS/app.js"></script>
