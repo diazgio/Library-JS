@@ -16,13 +16,6 @@ function Book(title,author,pages,edition,read){
   this.read = !read;
 }
 
-
-
-// const book1 = new Book('Harry Potter','JK. Rowling','500','First Edition');
-// const book2 = new Book('Apocalips','Giordano','800','Third Edition');
-// myLibrary.push(book1);
-// myLibrary.push(book2);
-
 function showForm(){
   form.className = 'show';
 }
@@ -50,10 +43,7 @@ function getLocalStorage() {
     showBooks();
 }
 
-
-
 function showBooks(){
-  
   for (let i = 0; i < myLibrary.length; i++) {
 
     let m = readContent(i);
@@ -88,11 +78,7 @@ function showBooks(){
     bookCard.appendChild(cardEdition);
     bookCard.appendChild(cardRead);
     bookCard.appendChild(readButton);
-
-    console.log(cardRead);
-
   }
-  
 }
 
 function readStatus(s) {
