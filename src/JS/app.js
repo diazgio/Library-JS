@@ -1,7 +1,10 @@
-import index.js
+import { content } from './dom.js';
+
+content();
 
 let myLibrary = [];
-const form = document.querySelector('form');
+const addBt = document.querySelector('.Add-button');
+const form = document.querySelector('.init');
 const ftitle = document.querySelector('.f-title');
 const fauthor = document.querySelector('.f-author');
 const fpages = document.querySelector('.f-pages');
@@ -18,15 +21,16 @@ function Book(title, author, pages, edition, read) {
   this.read = !read;
 }
 
-const showForm = () => {
-  form.className = 'show';
-}
+addBt.addEventListener('click', () => {
+  form.className = 'show'
+})
+
 
 const updateLocalStorage = () => {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-const addNewBooks = () => {
+fsubmit.addEventListener('click', () => {
   if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
     alert('There are data missing, please check it.');
   } else {
@@ -34,7 +38,8 @@ const addNewBooks = () => {
     myLibrary.push(book);
     updateLocalStorage();
   }
-}
+});
+
 
 const readContent = (s) => {
   let status;
