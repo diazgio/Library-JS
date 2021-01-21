@@ -8,7 +8,7 @@ const fread = document.querySelector('.f-read');
 const fsubmit = document.querySelector('.f-submit');
 const bookCard = document.querySelector('.book-card');
 
-function Book(title,author,pages,edition,read){
+function Book(title, author, pages, edition, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -16,52 +16,44 @@ function Book(title,author,pages,edition,read){
   this.read = !read;
 }
 
-function showForm(){
+function showForm() {
   form.className = 'show';
 }
 
-function addNewBooks(){
-  if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === ''){
-    alert('There are data missing, please check it.')
+function updateLocalStorage() {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function addNewBooks() {
+  if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
+    alert('There are data missing, please check it.');
   } else {
-    const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value, fread);
+    const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value, fread);
     myLibrary.push(book);
     updateLocalStorage();
   }
 }
 
-function updateLocalStorage() {
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+function readContent(s) {
+  let status;
+  if (myLibrary[s].read === true) {
+    status = 'Read';
+  } else {
+    status = 'Not Read';
+  }
+  return status;
 }
 
-function getLocalStorage() {
-    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-
-    if (myLibrary === null) {
-      myLibrary = [];
-    }
-    showBooks();
-}
-
-function deleteBook(book) {
-  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  myLibrary.splice(book, 1);
-  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  getLocalStorage();
-
-}
-
-function showBooks(){
-
+function showBooks() {
   bookCard.innerHTML = '';
-  for (let i = 0; i < myLibrary.length; i++) {
-    let m = readContent(i);
+  for (let i = 0; i < myLibrary.length; i += 1) {
+    const m = readContent(i);
     const bookDiv = document.createElement('div');
     bookDiv.className = 'book-item';
     const cardTitle = document.createElement('h2');
     cardTitle.setAttribute('class', 'card-title');
     cardTitle.innerText = myLibrary[i].title;
-    
+
     const cardAuthor = document.createElement('h3');
     cardAuthor.setAttribute('class', 'card-author');
     cardAuthor.innerText = `Author: ${myLibrary[i].author}`;
@@ -79,7 +71,7 @@ function showBooks(){
     cardRead.innerHTML = `${m}`;
 
     const readButton = document.createElement('button');
-    readButton.className = 'read-btn'
+    readButton.className = 'read-btn';
     readButton.innerHTML = 'Change Status';
     readButton.setAttribute('onclick', `readStatus(${i})`);
 
@@ -100,21 +92,27 @@ function showBooks(){
   }
 }
 
+function getLocalStorage() {
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+
+  if (myLibrary === null) {
+    myLibrary = [];
+  }
+  showBooks();
+}
+
+function deleteBook(book) {
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  myLibrary.splice(book, 1);
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  getLocalStorage();
+}
+
 function readStatus(s) {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   myLibrary[s].read = !myLibrary[s].read;
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   getLocalStorage();
-}
-
-function readContent(s) {
-  let status;
-  if (myLibrary[s].read == true) {
-    status = 'Read';
-  } else {
-    status = 'Not Read';
-  }
-  return status;
 }
 
 getLocalStorage();
