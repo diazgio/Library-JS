@@ -8,12 +8,12 @@ const fread = document.querySelector('.f-read');
 const fsubmit = document.querySelector('.f-submit');
 const bookCard = document.querySelector('.book-card');
 
-function Book(title,author,pages,edition, read){
+function Book(title,author,pages,edition,read){
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.edition = edition;
-  this.read = read;
+  this.read = !read;
 }
 
 
@@ -31,7 +31,7 @@ function addNewBooks(){
   if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === ''){
     alert('There are data missing, please check it.')
   } else {
-    const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value, fread.value);
+    const book = new Book(ftitle.value,fauthor.value,fpages.value,fedition.value, fread);
     myLibrary.push(book);
     updateLocalStorage();
   }
@@ -76,11 +76,11 @@ function showBooks(){
 
     const cardRead = document.createElement('p');
     cardRead.setAttribute('class', 'card-read');
-    cardRead.innerText = `Read: ${m}`;
+    cardRead.innerHTML = `${m}`;
 
     const readButton = document.createElement('button');
     readButton.innerHTML = 'Change Status';
-    readButton.setAttribute('onclick', `readStatus(${m})`);
+    readButton.setAttribute('onclick', `readStatus(${i})`);
 
     bookCard.appendChild(cardTitle);
     bookCard.appendChild(cardAuthor);
@@ -89,18 +89,16 @@ function showBooks(){
     bookCard.appendChild(cardRead);
     bookCard.appendChild(readButton);
 
-    console.log(myLibrary[0].read);
+    console.log(cardRead);
+
   }
   
 }
 
 function readStatus(s) {
-  if (s == 'Read' ) {
-    s = 'Not Read';
-  } else {
-    s = 'Read';
-  }
-  getLocalStorage();
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  myLibrary[s].read = !myLibrary[s].read;
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 function readContent(s) {
