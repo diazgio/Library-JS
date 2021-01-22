@@ -57,10 +57,6 @@ function content() {
   rlabel.className = 'rlabel';
   rlabel.innerHTML = 'Edition';
 
-  const rinput = document.createElement('input');
-  rinput.className = 'f-read';
-  rinput.setAttribute('type', 'checkbox');
-
   const sendBtn = document.createElement('button');
   sendBtn.className = 'f-submit';
   sendBtn.innerText = 'Submit';
@@ -82,10 +78,55 @@ function content() {
   formin.appendChild(pinput);
   formin.appendChild(elabel);
   formin.appendChild(einput);
-  formin.appendChild(rlabel);
-  formin.appendChild(rinput);
   formin.appendChild(sendBtn);
   main.appendChild(bookCards);
 }
 
-export { content };
+const showBooks = (book) => {
+  const bookCard = document.querySelector('.book-card');
+
+  const bookDiv = document.createElement('div');
+  bookDiv.className = 'book-item';
+  const cardTitle = document.createElement('h2');
+  cardTitle.setAttribute('class', 'card-title');
+  cardTitle.innerHTML = `${book.title}`;
+
+  const cardAuthor = document.createElement('h3');
+  cardAuthor.setAttribute('class', 'card-author');
+  cardAuthor.innerHTML = `Author: ${book.author}`;
+
+  const cardPage = document.createElement('p');
+  cardPage.setAttribute('class', 'card-page');
+  cardPage.innerHTML = `Number of pages: ${book.pages}`;
+
+  const cardEdition = document.createElement('p');
+  cardEdition.setAttribute('class', 'card-edition');
+  cardEdition.innerHTML = `Edition: ${book.edition}`;
+
+  const cardRead = document.createElement('p');
+  cardRead.setAttribute('class', 'card-read');
+  cardRead.innerHTML = '';
+
+  const readButton = document.createElement('button');
+  readButton.className = 'read-btn';
+  readButton.innerHTML = 'Change Status';
+  // readButton.setAttribute('onclick', `readStatus(${i})`);
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.setAttribute('type', 'button');
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.textContent = 'Delete';
+  // deleteBtn.setAttribute('onclick', `deleteBook(${i})`);
+
+  bookDiv.appendChild(cardTitle);
+  bookDiv.appendChild(cardAuthor);
+  bookDiv.appendChild(cardPage);
+  bookDiv.appendChild(cardEdition);
+  bookDiv.appendChild(cardRead);
+  bookDiv.appendChild(readButton);
+  bookDiv.appendChild(deleteBtn);
+  bookCard.appendChild(bookDiv);
+
+}
+
+export { content, showBooks };
