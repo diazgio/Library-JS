@@ -87,6 +87,9 @@ const showBooks = (book) => {
 
   const bookDiv = document.createElement('div');
   bookDiv.className = 'book-item';
+  bookDiv.setAttribute('id','id');
+  book.id += 1;
+  
   const cardTitle = document.createElement('h2');
   cardTitle.setAttribute('class', 'card-title');
   cardTitle.innerHTML = `${book.title}`;
@@ -109,14 +112,14 @@ const showBooks = (book) => {
 
   const readButton = document.createElement('button');
   readButton.className = 'read-btn';
-  readButton.innerHTML = 'Change Status';
-  // readButton.setAttribute('onclick', `readStatus(${i})`);
+  readButton.innerHTML = `${book.read ? 'Read' : 'Unread'}`;
+  readButton.setAttribute('onclick', `readStatus(${book.id})`);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.setAttribute('type', 'button');
   deleteBtn.className = 'delete-btn';
   deleteBtn.textContent = 'Delete';
-  // deleteBtn.setAttribute('onclick', `deleteBook(${i})`);
+  deleteBtn.setAttribute('onclick', `deleteBook(${book.id})`);
 
   bookDiv.appendChild(cardTitle);
   bookDiv.appendChild(cardAuthor);

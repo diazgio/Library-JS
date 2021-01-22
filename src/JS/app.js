@@ -2,7 +2,9 @@ import { content, showBooks } from './dom.js';
 
 content();
 
+
 let myLibrary = [];
+let bookId = 0;
 const addBt = document.querySelector('.Add-button');
 const form = document.querySelector('.init');
 const ftitle = document.querySelector('.f-title');
@@ -11,13 +13,17 @@ const fpages = document.querySelector('.f-pages');
 const fedition = document.querySelector('.f-edition');
 const fsubmit = document.querySelector('.f-submit');
 const bookCard = document.querySelector('.book-card');
+const id = document.querySelector('#id');
+
+
 
 function Book(title, author, pages, edition, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.edition = edition;
-  this.read = read;
+  this.read = !read;
+  this.id = bookId;
 }
 
 addBt.addEventListener('click', () => {
@@ -38,39 +44,29 @@ const addNewBook = () => {
   if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
     alert('There are data missing, please check it.');
   } else {
-    const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value);
+    const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value, false, id);
     myLibrary.push(book);
     updateLocalStorage();
   }
-  
+  render();
 }
 
-fsubmit.addEventListener('click', (e) => {
-  e.preventDefault();
+fsubmit.addEventListener('click', () => {
   addNewBook();
-  
+  window.location.reload;
 });
 
-// const getLocalStorage = () => {
-//   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+const getBookByID = (id) => myLibrary.filter((book) => book.id === id)[0];
 
-//   if (myLibrary === null) {
-//     myLibrary = [];
-//   }
-//   for(let i = 0; myLibrary.length; i += 1){
-//     showBooks();
-    
-//   }
-// }
+window.deleteBook = (book) => {
+  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  myLibrary.splice(getBookByID(book), 1);
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  render();
+}
+
 const render = () => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  // myLibrary.forEach((book) => {
-  //   console.log(book.title);
-  //   if (myLibrary === null) {
-  //     myLibrary = [];
-  //   }
-  //   showBooks(book);
-  // })
   if (myLibrary != null){
  
     bookCard.innerHTML = '';
@@ -82,24 +78,13 @@ const render = () => {
   }
 }
 
-const deleteBook = (book) => {
-  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  myLibrary.splice(book, 1);
-  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  getLocalStorage();
-}
-
-const readStatus = (s) => {
+window.readStatus = (s) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
   myLibrary[s].read = !myLibrary[s].read;
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  getLocalStorage();
+  render();
 }
 
 window.onload = () => {
   render();
 }
-//getLocalStorage();
-
-
-
