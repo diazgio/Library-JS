@@ -64,6 +64,12 @@ function content() {
 
   const bookCards = document.createElement('div');
   bookCards.className = 'book-card';
+
+  // const modal = document.createElement('div');
+  // modal.setAttribute('class', 'my-modal');
+  // const modalText = document.createElement('p');
+  // modalText.setAttribute('class', 'modal-text');
+  // modal.appendChild(modalText);
   
   root.appendChild(header);
   header.appendChild(titledo);

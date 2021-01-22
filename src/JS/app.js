@@ -11,6 +11,17 @@ const fedition = document.querySelector('.f-edition');
 const fsubmit = document.querySelector('.f-submit');
 const bookCard = document.querySelector('.book-card');
 const id = document.querySelector('#id');
+
+// Modal
+const modal = document.createElement('div');
+modal.setAttribute('class', 'my-modal');
+const modalText = document.createElement('p');
+modalText.setAttribute('class', 'modal-text');
+modal.appendChild(modalText);
+
+root.appendChild(modal);
+
+
 function Book(title, author, pages, edition, read, Id) {
   this.title = title;
   this.author = author;
@@ -26,16 +37,23 @@ addBt.addEventListener('click', () => {
     form.className = 'init';
   }
 })
+
 const updateLocalStorage = () => {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   const currentId = Number(localStorage.getItem('lastBookId')) + 1;
   console.log(currentId);
   localStorage.setItem('lastBookId', currentId);
 }
+
+const clearInput = () => {
+  ftitle.value = '';
+  fauthor.value = '';
+  fpages.value = '';
+  fedition.value = '';
+}
+
 const addNewBook = () => {
-  if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
-    alert('There are data missing, please check it.');
-  } else {
+
     let currentId = Number(localStorage.getItem('lastBookId'));
     if(currentId != null) {
       currentId += 1;
@@ -46,13 +64,46 @@ const addNewBook = () => {
     const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value, false, currentId);
     myLibrary.push(book);
     updateLocalStorage();
-  }
+
   render();
 }
-fsubmit.addEventListener('click', (e) => {
-  addNewBook();
+const modalAlert = (e) => {
+  e.preventDefault();
+  if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
+    modal.style.display = 'block';
+    modalText.textContent = 'There are data missing, please check it.';
+
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    setTimeout(() => document.querySelector('.my-modal').remove(), 6000);
+  } else {
+    addNewBook();
+    clearInput();
+    form.className = 'init';
+    // window.location.reload;
+  }
   window.location.reload;
-});
+  
+}
+// fsubmit.addEventListener('click', (e) => {
+//   if (ftitle.value === '' || fauthor.value === '' || fpages.value === '' || fedition.value === '') {
+//     // modalAlert();
+//     modal.style.display = 'block';
+//     modalText.textContent = 'There are data missing, please check it.';
+//     console.log('adf');
+//   } else {
+//     addNewBook();
+//   window.location.reload;
+
+//   }
+// });
+
+fsubmit.addEventListener('click', modalAlert);
+
 const getBookByID = (id) => myLibrary.filter((book) => book.id === id)[0];
 window.deleteBook = (s) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
