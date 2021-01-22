@@ -88,7 +88,6 @@ const showBooks = (book) => {
   const bookDiv = document.createElement('div');
   bookDiv.className = 'book-item';
   bookDiv.setAttribute('id','id');
-  book.id += 1;
   
   const cardTitle = document.createElement('h2');
   cardTitle.setAttribute('class', 'card-title');
