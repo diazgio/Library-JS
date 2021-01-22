@@ -11,7 +11,6 @@ const fpages = document.querySelector('.f-pages');
 const fedition = document.querySelector('.f-edition');
 const fsubmit = document.querySelector('.f-submit');
 const bookCard = document.querySelector('.book-card');
-const id = document.querySelector('#id');
 
 // Modal
 const modal = document.createElement('div');
@@ -41,8 +40,8 @@ addBt.addEventListener('click', () => {
 
 const updateLocalStorage = () => {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  const currentId = Number(localStorage.getItem('lastBookId')) + 1;
-  localStorage.setItem('lastBookId', currentId);
+  const curentId = Number(localStorage.getItem('lastBookId')) + 1;
+  localStorage.setItem('lastBookId', curentId);
 };
 
 const clearInput = () => {
@@ -65,14 +64,14 @@ const render = () => {
 };
 
 const addNewBook = () => {
-  let currentId = Number(localStorage.getItem('lastBookId'));
-  if (currentId != null) {
-    currentId += 1;
+  let curentId = Number(localStorage.getItem('lastBookId'));
+  if (curentId != null) {
+    curentId += 1;
   } else {
     localStorage.setItem('lastBookId', 0);
-    currentId = 0;
+    curentId = 0;
   }
-  const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value, false, currentId);
+  const book = new Book(ftitle.value, fauthor.value, fpages.value, fedition.value, false, curentId);
   myLibrary.push(book);
   updateLocalStorage();
 
@@ -104,9 +103,7 @@ fsubmit.addEventListener('click', modalAlert);
 const getBookByID = (id) => myLibrary.filter((book) => book.id === id)[0];
 window.deleteBook = (s) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  const index = myLibrary.findIndex((book) => {
-    return book.id === s;
-  });
+  const index = myLibrary.findIndex(book => book.id === s);
   myLibrary.splice(index, 1);
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   render();
@@ -114,9 +111,7 @@ window.deleteBook = (s) => {
 
 window.readStatus = (s) => {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-  const index = myLibrary.findIndex(book => {
-    return book.id === s;
-  });
+  const index = myLibrary.findIndex(book => book.id === s);
   myLibrary[index].read = !myLibrary[index].read;
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   render();
