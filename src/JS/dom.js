@@ -2,30 +2,30 @@ function content() {
   const root = document.querySelector('#root');
   const header = document.createElement('div');
   header.setAttribute('class', 'header');
-  
+
   const titledo = document.createElement('h1');
   titledo.innerHTML = 'Welcome to The Big Library';
-  
+
   const main = document.createElement('div');
   main.className = 'form-container';
-  
+
   const addBtn = document.createElement('button');
   addBtn.className = 'Add-button';
   addBtn.innerText = 'Add a New Book';
   addBtn.setAttribute('type', 'button');
-  
+
   const formin = document.createElement('form');
-  formin.className = 'init'
-  
+  formin.className = 'init';
+
   const tlabel = document.createElement('label');
   tlabel.className = 'tlabel';
   tlabel.innerHTML = 'Title';
-  
+
   const tinput = document.createElement('input');
   tinput.className = 'f-title';
   tinput.setAttribute('type', 'text');
   tinput.setAttribute('placeholder', 'Write Title');
-  
+
   const alabel = document.createElement('label');
   alabel.className = 'alabel';
   alabel.innerHTML = 'Author';
@@ -65,12 +65,6 @@ function content() {
   const bookCards = document.createElement('div');
   bookCards.className = 'book-card';
 
-  // const modal = document.createElement('div');
-  // modal.setAttribute('class', 'my-modal');
-  // const modalText = document.createElement('p');
-  // modalText.setAttribute('class', 'modal-text');
-  // modal.appendChild(modalText);
-  
   root.appendChild(header);
   header.appendChild(titledo);
   root.appendChild(main);
@@ -93,8 +87,8 @@ const showBooks = (book) => {
 
   const bookDiv = document.createElement('div');
   bookDiv.className = 'book-item';
-  bookDiv.setAttribute('id','id');
-  
+  bookDiv.setAttribute('id', 'id');
+
   const cardTitle = document.createElement('h2');
   cardTitle.setAttribute('class', 'card-title');
   cardTitle.innerHTML = `${book.title}`;
@@ -134,7 +128,6 @@ const showBooks = (book) => {
   bookDiv.appendChild(readButton);
   bookDiv.appendChild(deleteBtn);
   bookCard.appendChild(bookDiv);
-
-}
+};
 
 export { content, showBooks };
