@@ -22,12 +22,7 @@ modal.appendChild(modalText);
 root.appendChild(modal);
 
 function Book(title, author, pages, edition, read, Id) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.edition = edition;
-  this.read = !read;
-  this.id = Id;
+  return { title, author, pages, edition, read, Id }
 }
 
 addBt.addEventListener('click', () => {
